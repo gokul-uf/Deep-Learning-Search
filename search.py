@@ -54,6 +54,7 @@ def load_from_prev():
 		print('no of improved solutions loaded')
 
 if __name__ == '__main__':
+<<<<<<< HEAD
 	load_from_prev()
 	try:
 		print("starting search at "+str(start_time))
@@ -89,3 +90,25 @@ if __name__ == '__main__':
 		pickle.dump(seed_config,open("best_config.save",'wb'))
 		pickle.dump(best_accuracy,open("best_accuracy.save",'wb'))
 		pickle.dump(no_of_improv_solns,open('no_of_improv_solns.save','wb'))
+=======
+	print("starting search at "+str(start_time))
+	best_accuracy = process_config.process_config(seed_config,"seed")
+	configs_computed[config_to_tuple(seed_config)] = best_accuracy
+
+	for i in range(no_of_configs):
+		while True:
+			new_config = get_new_config(seed_config)
+			if config_to_tuple(new_config) not in configs_computed:
+				break
+		os.makedirs("iter_"+str(i),exist_ok=True)		
+		new_accuracy = process_config.process_config(new_config,"iter_"+str(i)+"/iter_"+str(i))
+		configs_computed[config_to_tuple(new_config)] = new_accuracy
+
+		if new_accuracy >= best_accuracy:
+			no_of_improv_solns += 1
+			best_accuracy = new_accuracy
+			seed_config = new_config
+			print ("Found new solution at "+str(time.time() - start_time)+
+				" Iteration: "+str(i)+" Improvement Number: "+ str(no_of_improv_solns) +
+				" Config: " + process_config.printconfig(seed_config) + " Accuracy: " + str(best_accuracy) )
+>>>>>>> fec458533cda3716268a4027959fd25ede46939a
