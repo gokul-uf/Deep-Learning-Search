@@ -54,7 +54,6 @@ def load_from_prev():
 		print('no of improved solutions loaded')
 
 if __name__ == '__main__':
-<<<<<<< HEAD
 	load_from_prev()
 	try:
 		print("starting search at "+str(start_time))
@@ -90,7 +89,6 @@ if __name__ == '__main__':
 		pickle.dump(seed_config,open("best_config.save",'wb'))
 		pickle.dump(best_accuracy,open("best_accuracy.save",'wb'))
 		pickle.dump(no_of_improv_solns,open('no_of_improv_solns.save','wb'))
-=======
 	print("starting search at "+str(start_time))
 	best_accuracy = process_config.process_config(seed_config,"seed")
 	configs_computed[config_to_tuple(seed_config)] = best_accuracy
@@ -111,4 +109,3 @@ if __name__ == '__main__':
 			print ("Found new solution at "+str(time.time() - start_time)+
 				" Iteration: "+str(i)+" Improvement Number: "+ str(no_of_improv_solns) +
 				" Config: " + process_config.printconfig(seed_config) + " Accuracy: " + str(best_accuracy) )
->>>>>>> fec458533cda3716268a4027959fd25ede46939a
